@@ -40,6 +40,7 @@ class CrimeListFragment : Fragment() {
 
     private lateinit var crimeRecyclerView: RecyclerView
     private lateinit var addCrimeButton: Button
+    private lateinit var emptyListTextView: TextView
 
     private var adapter: CrimeAdapter? = CrimeAdapter()
 
@@ -106,10 +107,14 @@ class CrimeListFragment : Fragment() {
 
 
     private fun updateUI(crimes: List<Crime>) {
-
-        if (crimes.isNotEmpty()) (crimeRecyclerView.adapter as CrimeAdapter).submitList(crimes)
+        addCrimeButton = requireView().findViewById(R.id.add_crime)
+        emptyListTextView = requireView().findViewById(R.id.list_empty)
+        if (crimes.isNotEmpty()) {
+            (crimeRecyclerView.adapter as CrimeAdapter).submitList(crimes)
+            addCrimeButton.visibility = View.INVISIBLE
+            emptyListTextView.visibility = View.INVISIBLE
+        }
         else {
-            val addCrimeButton: Button = requireView().findViewById(R.id.add_crime)
             addCrimeButton.apply {
                 visibility = View.VISIBLE
                 setOnClickListener {
@@ -118,7 +123,6 @@ class CrimeListFragment : Fragment() {
                     callbacks?.onCrimeSelected(crime.id)
                 }
             }
-            val emptyListTextView: TextView = requireView().findViewById(R.id.list_empty)
             emptyListTextView.visibility = View.VISIBLE
         }
     }
