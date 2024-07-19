@@ -30,4 +30,9 @@
     <string name="crime_call_suspect">Call suspect</string>
     <string name="crime_call_suspect_is_disabled">It is impossible to call the suspect, сhoose a suspect</string>
     <string name="crime_photo_added">Crime photo added</string>
+    <string name="contacts_permissions">"Contacts" permission isn\'t granted</string>
+    <string name="contacts_permissions_detail">Open Permissions and grant the "Contacts" permission</string>
+    <string name="contacts_permissions_granted">Permissions to access "Contacts" have been granted</string>
+    <string name="contacts_permissions_not_granted">Permissions to access "Contacts" NOT have been granted</string>
+
 </resources>

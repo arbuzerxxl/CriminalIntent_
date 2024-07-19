@@ -31,5 +31,9 @@
     <string name="crime_call_suspect">Позвонить подозреваемому</string>
     <string name="crime_call_suspect_is_disabled">Позвонить подозреваемому невозможно, выберите подозреваемого</string>
     <string name="crime_photo_added">Добавлено фото преступления</string>
+    <string name="contacts_permissions">Разрешение на "Контакты" не предоставлено</string>
+    <string name="contacts_permissions_detail">Откройте «Разрешения» и предоставьте разрешение «Контактам».</string>
+    <string name="contacts_permissions_granted">Разрешения на доступ к «Контактам» предоставлены</string>
+    <string name="contacts_permissions_not_granted">Разрешения на доступ к «Контактам» НЕ предоставлены</string>
 
 </resources>

@@ -30,6 +30,10 @@ import android.text.format.DateFormat as DF
 import java.util.Date
 import java.util.UUID
 import android.Manifest
+import android.app.Activity
+import android.provider.Settings
+import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 
 private const val TAG = "CrimeFragment"
 private const val ARG_CRIME_ID = "crime_id"
@@ -80,9 +84,42 @@ class CrimeFragment : Fragment(), FragmentResultListener {
     }
 
     private val getContactsPermissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
-        if (result.containsKey(Manifest.permission.READ_CONTACTS)) {
+
+        if (result[Manifest.permission.READ_CONTACTS] == true) {
             suspectButton.setOnClickListener {
                 getSuspect.launch(null)
+            }
+            suspectButton.isEnabled = true
+        }
+
+        if (result[Manifest.permission.READ_CONTACTS] == false) {
+
+            suspectButton.setOnClickListener {
+                Snackbar.make(requireView(), R.string.contacts_permissions, Snackbar.LENGTH_LONG).setAction(
+                    "SETTINGS",
+                    View.OnClickListener {
+                        getApplicationSettings.launch(
+                            Intent(
+                                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.parse("package:" + requireActivity().packageName)
+                            )
+                        )
+                        Toast.makeText(context, R.string.contacts_permissions_detail, Toast.LENGTH_SHORT).show()
+
+                    }).show()
+            }
+
+        }
+    }
+
+    private val getApplicationSettings = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (requireActivity().checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(context, R.string.contacts_permissions_granted, Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(context, R.string.contacts_permissions_not_granted, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -293,8 +330,7 @@ class CrimeFragment : Fragment(), FragmentResultListener {
             if (crime.suspectPhoneNumber.isNotEmpty()) {
                 text = crime.suspectPhoneNumber
                 isEnabled = true
-            }
-            else {
+            } else {
                 isEnabled = false
                 contentDescription = getString(R.string.crime_call_suspect_is_disabled)
             }
