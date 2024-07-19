@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">CriminalIntent</string>
+    <string name="new_crime">New Crime</string>
+    <string name="crime_title_hint">Enter a title for the crime.</string>
+    <string name="crime_title_label">Title</string>
+    <string name="crime_details_label">Details</string>
+    <string name="crime_solved_label">Solved</string>
+    <string name="crime_date">Crime Date</string>
+    <string name="crime_title">Crime Title</string>
+    <string name="solved">solved</string>
+    <string name="requires_to_police">Requires to police</string>
+    <string name="some_cool_title">1234</string>
+    <string name="list_empty">List Empty</string>
+    <string name="add_crime">Add crime</string>
+    <string name="crime_suspect_text">Choose Suspect</string>
+    <string name="crime_report_text">Send Crime Report</string>
+    <string name="crime_report">%1$s! The crime was discovered on %2$s. %3$s. %5$s and %4$s. </string>
+    <string name="crime_report_solved">The case is solved</string>
+    <string name="crime_report_unsolved">The case is not solved</string>
+    <string name="crime_report_required_police">The case is required to police</string>
+    <string name="crime_report_unrequired_police">The case is not required to police</string>
+    <string name="crime_report_no_suspect">there is no suspect</string>
+    <string name="crime_report_suspect">the suspect is %s</string>
+    <string name="crime_report_subject">CriminalIntent Crime Report</string>
+    <string name="send_report">Send crime report via</string>
+    <string name="crime_suspect_phone">Suspect phone</string>
+    <string name="crime_photo_button_description">Take photo of crime scene</string>
+    <string name="crime_photo_no_image_description">Crime scene photo (not set)</string>
+    <string name="crime_photo_image_description">Crime scene photo (set)</string>
+    <string name="crime_call_suspect">Call suspect</string>
+    <string name="crime_call_suspect_is_disabled">It is impossible to call the suspect, сhoose a suspect</string>
+    <string name="crime_photo_added">Crime photo added</string>
+</resources>
