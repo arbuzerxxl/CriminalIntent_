@@ -80,6 +80,7 @@ class CrimeFragment : Fragment(), FragmentResultListener {
             updatePhotoView()
             requireActivity().revokeUriPermission(photoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
             photoView.announceForAccessibility(getString(R.string.crime_photo_added))
+            photoView.isEnabled = true
         }
     }
 
@@ -168,15 +169,19 @@ class CrimeFragment : Fragment(), FragmentResultListener {
             }
         }
         solvedCheckBox = view.findViewById(R.id.crime_solved)
+        requiresToPoliceCheckBox = view.findViewById(R.id.crime_requires_to_police)
         solvedCheckBox.apply {
+            isEnabled = !crime.requiresPolice
             setOnCheckedChangeListener { _, isChecked ->
+                requiresToPoliceCheckBox.isEnabled = !isChecked
                 crime.isSolved = isChecked
                 jumpDrawablesToCurrentState()
             }
         }
-        requiresToPoliceCheckBox = view.findViewById(R.id.crime_requires_to_police)
         requiresToPoliceCheckBox.apply {
+            isEnabled = !crime.isSolved
             setOnCheckedChangeListener { _, isChecked ->
+                solvedCheckBox.isEnabled = !isChecked
                 crime.requiresPolice = isChecked
                 jumpDrawablesToCurrentState()
             }
@@ -412,6 +417,7 @@ class CrimeFragment : Fragment(), FragmentResultListener {
             photoView.setImageBitmap(bitmap)
             photoView.contentDescription =
                 getString(R.string.crime_photo_image_description)
+            photoView.rotation = 90.0F  //need create getCameraPhotoOrientation()
         } else {
             photoView.setImageDrawable(null)
             photoView.apply { isEnabled = false }
